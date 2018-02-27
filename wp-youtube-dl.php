@@ -11,7 +11,7 @@
 
 require_once('includes/wp-youtube-dl.class.php');
 
-//if ( is_admin() ) {
+if ( is_admin() ) {
 	function add_admin_page(){
     	add_menu_page(
 	        __( 'Buscador YouTube', 'textdomain' ),
@@ -20,7 +20,7 @@ require_once('includes/wp-youtube-dl.class.php');
 	        'wp-youtube-dl',
 	        'wp_youtube_dl_admin_page',
 	        'dashicons-video-alt3',
-	        6
+	        68
 		);
     }
 
@@ -28,8 +28,8 @@ require_once('includes/wp-youtube-dl.class.php');
     	include('admin/wp-youtube-dl-admin.php'); 	
     }
 
-	add_action( 'admin_init', 'add_admin_page' ); 
-//}
+	add_action( 'admin_menu', 'add_admin_page' ); 
+}
 
 register_activation_hook( __FILE__, 'wp_youtube_dl_init');
 function wp_youtube_dl_init(){	
