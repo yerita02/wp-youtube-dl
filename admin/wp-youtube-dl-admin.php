@@ -1,16 +1,23 @@
 <?php 
 	$hidden_field_name = 'is_submit_hidden';	
 	if(isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
-		if(!update_option('num_inst_is', $_POST['num-inst'])){
-			add_option('num_inst_is',  $_POST['num-inst']);
+		if(!update_option('wp_youtube_dl-nro_max', $_POST['wp_youtube_dl-nro_max'])){
+			add_option('wp_youtube_dl-nro_max',  $_POST['wp_youtube_dl-nro_max']);
 		}
 
-		if(!update_option('api_key_gm_is', $_POST['api-key-gm'])){
-			add_option('api_key_gm_is',  $_POST['api-key-gm']);
+		if(!update_option('wp_youtube_dl-api_key', $_POST['wp_youtube_dl-api_key'])){
+			add_option('wp_youtube_dl-api_key',  $_POST['wp_youtube_dl-api_key']);
+		}
+
+		if(!update_option('wp_youtube_dl-id_page', $_POST['wp_youtube_dl-id_page'])){
+			add_option('wp_youtube_dl-id_page',  $_POST['wp_youtube_dl-id_page']);
 		}
 	
 		?>
-			<div class='updated'><p><strong> <?php _e('Ajustes guardados.' ); ?>  </strong></p></div>
+			<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible"> 
+				<p><strong><?php _e('Ajustes guardados.' ); ?></strong></p>
+				<button type="button" class="notice-dismiss"><span class="screen-reader-text">Descartar este aviso.</span></button>
+			</div>
 		<?php	
 	}
 ?>
@@ -23,19 +30,19 @@
 				<tr>
 					<td><b>Número de Videos por página:</b> </td>
 					<td>
-						<input class="small-text" type="number" max="100" min="1" step="1" name="num-inst" value="<?php echo get_option('num_inst_is') ; ?>" > 
+						<input class="small-text" type="number" max="100" min="1" step="1" name="wp_youtube_dl-nro_max" value="<?php echo get_option('wp_youtube_dl-nro_max') ; ?>" > 
 					</td>
 				</tr>		
 				<tr>
 					<td><b>API KEY Google YouTube:</b></td>
 					<td>
-						<input type="text" name="api-key-gm" value="<?php echo get_option('api_key_gm_is') ; ?>" size="80">
+						<input type="text" name="wp_youtube_dl-api_key" value="<?php echo get_option('wp_youtube_dl-api_key') ; ?>" size="80">
 					</td>
 				</tr>
 				<tr>
 					<td><b>Página para el buscador:</b></td>
 					<td>
-						<input type="text" name="api-key-gm" value="<?php echo get_option('api_key_gm_is') ; ?>" size="80">
+						<input type="text" name="wp_youtube_dl-id_page" value="<?php echo get_option('wp_youtube_dl-id_page') ; ?>" size="80">
 					</td>
 				</tr>
 			</tbody>
