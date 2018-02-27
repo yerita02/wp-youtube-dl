@@ -31,6 +31,8 @@ if ( is_admin() ) {
 	add_action( 'admin_menu', 'add_admin_page' ); 
 }
 
+add_filter('template_include', 'include_template_wp_youtube_dl_function', 1 );
+
 
 
 register_activation_hook( __FILE__, 'wp_youtube_dl_init');
@@ -38,7 +40,7 @@ function wp_youtube_dl_init(){
 	WP_YouTube_dl::init();
 }
 
-register_deactivation_hook(__FILE__, 'wp_youtube_dl_remove' );
+register_deactivation_hook(__FILE__, 'wp_youtube_dl_remove');
 function wp_youtube_dl_remove(){
 	WP_YouTube_dl::remove();
 }
