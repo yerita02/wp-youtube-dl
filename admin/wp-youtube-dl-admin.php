@@ -5,12 +5,18 @@
 			add_option('wp_youtube_dl-nro_max',  $_POST['wp_youtube_dl-nro_max']);
 		}
 
-		if(!update_option('wp_youtube_dl-api_key', $_POST['wp_youtube_dl-api_key'])){
-			add_option('wp_youtube_dl-api_key',  $_POST['wp_youtube_dl-api_key']);
+		if(!update_option('wp_youtube_dl-api_public_key', $_POST['wp_youtube_dl-api_public_key'])){
+			add_option('wp_youtube_dl-api_public_key',  $_POST['wp_youtube_dl-api_public_key']);
 		}
 
-		if(!update_option('wp_youtube_dl-id_page', $_POST['wp_youtube_dl-id_page'])){
-			add_option('wp_youtube_dl-id_page',  $_POST['wp_youtube_dl-id_page']);
+		if(!update_option('wp_youtube_dl-api_private_key', $_POST['wp_youtube_dl-api_private_key'])){
+			add_option('wp_youtube_dl-api_private_key',  $_POST['wp_youtube_dl-api_private_key']);
+		}
+
+		if($_POST['page-dropdown'] != 0){			
+			if(!update_option('wp_youtube_dl-id_page', $_POST['page-dropdown'])){
+				add_option('wp_youtube_dl-id_page',  $_POST['page-dropdown']);
+			}
 		}
 	
 		?>
@@ -34,15 +40,36 @@
 					</td>
 				</tr>		
 				<tr>
-					<td><b>API KEY Google YouTube:</b></td>
+					<td><b>API KEY Public Google YouTube:</b></td>
 					<td>
-						<input type="text" name="wp_youtube_dl-api_key" value="<?php echo get_option('wp_youtube_dl-api_key') ; ?>" size="80">
+						<input type="text" name="wp_youtube_dl-api_public_key" value="<?php echo get_option('wp_youtube_dl-api_public_key') ; ?>" size="80">
+					</td>
+				</tr>
+
+				<tr>
+					<td><b>API KEY Private Google YouTube:</b></td>
+					<td>
+						<input type="text" name="wp_youtube_dl-api_private_key" value="<?php echo get_option('wp_youtube_dl-api_private_key') ; ?>" size="80">
 					</td>
 				</tr>
 				<tr>
 					<td><b>Página para el buscador:</b></td>
 					<td>
-						<input type="text" name="wp_youtube_dl-id_page" value="<?php echo get_option('wp_youtube_dl-id_page') ; ?>" size="80">
+						<select name="page-dropdown"> 
+							<option value="0"> <?php echo esc_attr( __( 'Seleccionar Página' ) ); ?> </option> 
+							<?php 
+								$pages = get_pages(); 
+								$id_page_actual = get_option('wp_youtube_dl-id_page');
+								foreach ( $pages as $page ) {
+									$option = '<option value="' . $page->ID . '"'; 
+									$option .= ($page->ID == $id_page_actual) ? ' selected ' : '';
+									$option .= '>';
+									$option .= $page->post_title;									
+									$option .= '</option>';
+									echo $option;
+								}
+							?>
+						</select>
 					</td>
 				</tr>
 			</tbody>

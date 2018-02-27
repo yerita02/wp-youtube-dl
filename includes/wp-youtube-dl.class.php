@@ -54,8 +54,7 @@ if ( !class_exists( 'WP_YouTube_dl' ) ) {
 
         public static function remove() {
             delete_option('wp_youtube_dl-active');
-        }
-        
+        }               
 	}
 }
 

@@ -10,6 +10,7 @@
 */
 
 require_once('includes/wp-youtube-dl.class.php');
+require_once('includes/wp-youtube-dl-functions.php');
 
 if ( is_admin() ) {
 	function add_admin_page(){
@@ -27,9 +28,10 @@ if ( is_admin() ) {
     function wp_youtube_dl_admin_page(){
     	include('admin/wp-youtube-dl-admin.php'); 	
     }
-
 	add_action( 'admin_menu', 'add_admin_page' ); 
 }
+
+
 
 register_activation_hook( __FILE__, 'wp_youtube_dl_init');
 function wp_youtube_dl_init(){	
