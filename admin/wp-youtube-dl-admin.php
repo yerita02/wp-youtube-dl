@@ -5,12 +5,8 @@
 			add_option('wp_youtube_dl-nro_max',  $_POST['wp_youtube_dl-nro_max']);
 		}
 
-		if(!update_option('wp_youtube_dl-api_public_key', $_POST['wp_youtube_dl-api_public_key'])){
-			add_option('wp_youtube_dl-api_public_key',  $_POST['wp_youtube_dl-api_public_key']);
-		}
-
-		if(!update_option('wp_youtube_dl-api_private_key', $_POST['wp_youtube_dl-api_private_key'])){
-			add_option('wp_youtube_dl-api_private_key',  $_POST['wp_youtube_dl-api_private_key']);
+		if(!update_option('wp_youtube_dl-api_key', $_POST['wp_youtube_dl-api_key'])){
+			add_option('wp_youtube_dl-api_key',  $_POST['wp_youtube_dl-api_key']);
 		}
 
 		if($_POST['page-dropdown'] != 0){			
@@ -40,16 +36,9 @@
 					</td>
 				</tr>		
 				<tr>
-					<td><b>API KEY Public Google YouTube:</b></td>
+					<td><b>API KEY Google YouTube:</b></td>
 					<td>
-						<input type="text" name="wp_youtube_dl-api_public_key" value="<?php echo get_option('wp_youtube_dl-api_public_key') ; ?>" size="80">
-					</td>
-				</tr>
-
-				<tr>
-					<td><b>API KEY Private Google YouTube:</b></td>
-					<td>
-						<input type="text" name="wp_youtube_dl-api_private_key" value="<?php echo get_option('wp_youtube_dl-api_private_key') ; ?>" size="80">
+						<input type="text" name="wp_youtube_dl-api_key" value="<?php echo get_option('wp_youtube_dl-api_key') ; ?>" size="80">
 					</td>
 				</tr>
 				<tr>
