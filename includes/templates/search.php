@@ -32,6 +32,13 @@
 				});
 
 				function getRequest(searchTerm) {
+					$('.content-area').append(	'<div id="loader" class="container">' + 
+													'<div class="item item-1"></div>' + 
+													'<div class="item item-2"></div>' +
+													'<div class="item item-3"></div>' +
+													'<div class="item item-4"></div>' +
+												'</div>'); 
+
 				    url = 'https://www.googleapis.com/youtube/v3/search';
 				    var params = {
 				        part: 'snippet',
@@ -59,8 +66,9 @@
 				        html += 	'<div><p>' + title + '</p><a href="<?php echo $url_video;?>'+videoId+'"></a></div>';
 				        html += '</div>';
 				    }); 
-				    
+
 				    $('#results').html(html);
+				    $('#loader').remove();				    
 				}
 			</script>
 		</main><!-- #main -->
