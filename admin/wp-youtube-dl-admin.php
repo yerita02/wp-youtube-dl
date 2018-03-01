@@ -32,33 +32,46 @@
 				<tr>
 					<td><b>Número de Videos por página:</b> </td>
 					<td>
-						<input class="small-text" type="number" max="100" min="1" step="1" name="wp_youtube_dl-nro_max" value="<?php echo get_option('wp_youtube_dl-nro_max') ; ?>" > 
+						<input class="small-text" type="number" max="50" min="1" step="1" name="wp_youtube_dl-nro_max" value="<?php echo get_option('wp_youtube_dl-nro_max') ; ?>" > 
+						<small>Debe ser un número entre 1 y 50</small>
 					</td>
 				</tr>		
 				<tr>
 					<td><b>API KEY Google YouTube:</b></td>
 					<td>
 						<input type="text" name="wp_youtube_dl-api_key" value="<?php echo get_option('wp_youtube_dl-api_key') ; ?>" size="80">
+						<small>Crear API Key en: 
+							<a href="https://console.developers.google.com/apis/credentials" target="_blank">Console Developers Google</a>
+						</small>
 					</td>
 				</tr>
 				<tr>
 					<td><b>Página para el buscador:</b></td>
 					<td>
-						<select name="page-dropdown"> 
+						<select name="page-dropdown" 
+								onchange='document.getElementById("page-link").setAttribute("href",this.options[this.selectedIndex].getAttribute("link"))'> 
 							<option value="0"> <?php echo esc_attr( __( 'Seleccionar Página' ) ); ?> </option> 
 							<?php 
 								$pages = get_pages(); 
 								$id_page_actual = get_option('wp_youtube_dl-id_page');
+								$link_selected = '#';
 								foreach ( $pages as $page ) {
+									$link =  get_page_link( $page->ID );
+									
+									if($page->ID == $id_page_actual)
+										$link_selected = $link;
+
 									$option = '<option value="' . $page->ID . '"'; 
-									$option .= ($page->ID == $id_page_actual) ? ' selected ' : '';
-									$option .= '>';
+									$option .= ($page->ID == $id_page_actual) ? ' selected ' : ' ';									
+									$option .= ' link="' . $link  . '"';
+									$option .= ' >';
 									$option .= $page->post_title;									
 									$option .= '</option>';
 									echo $option;
 								}
 							?>
 						</select>
+						<small><a id="page-link" href="<?php echo $link_selected; ?>" target="_blank">Ver página</a></small>
 					</td>
 				</tr>
 			</tbody>
