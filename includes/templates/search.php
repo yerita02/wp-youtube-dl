@@ -1,6 +1,7 @@
 <?php
 	get_header();
 	$url_css = str_replace('/includes/templates', '', plugins_url( 'public/css/style.css', __FILE__));
+	$url_video = str_replace('/includes/templates', '', plugins_url( 'public/download.php?id=', __FILE__));
 ?>
 <link rel="stylesheet" href="<?php echo $url_css; ?>">
 <div class="wrap">
@@ -52,9 +53,10 @@
 				    $.each(entries, function (index, value) {
 				        var title = value.snippet.title;
 				        var thumbnail = value.snippet.thumbnails.default.url;
+				        var videoId = value.id.videoId;
 				        html += '<div class="video-item">';
 				        html +=		'<img src="' + thumbnail + '" />';
-				        html += 	'<div>' + title + '</div>';
+				        html += 	'<div><p>' + title + '</p><a href="<?php echo $url_video;?>'+videoId+'"></a></div>';
 				        html += '</div>';
 				    }); 
 				    
