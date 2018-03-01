@@ -1,0 +1,10 @@
+.video-item{
+	display: inline-flex;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.video-item img{
+	margin-right: 2%;
+}

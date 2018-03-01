@@ -1,7 +1,8 @@
 <?php
 	get_header();
+	$url_css = str_replace('/includes/templates', '', plugins_url( 'public/css/style.css', __FILE__));
 ?>
-
+<link rel="stylesheet" href="<?php echo $url_css; ?>">
 <div class="wrap">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">	
@@ -9,7 +10,7 @@
 				<input id="query" type="text" style="width: 80%;" />
 				<button id="search-button" style="width: 20%;">Buscar</button>
 			</div>
-			<div id="search-results">
+			<div id="results">
 			</div>
 			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 			<script>
@@ -45,18 +46,19 @@
 				}
 
 				function showResults(results) {
-					console.log('results',results);
 				    var html = "";
 				    var entries = results.items;
 				    
 				    $.each(entries, function (index, value) {
 				        var title = value.snippet.title;
 				        var thumbnail = value.snippet.thumbnails.default.url;
-				        html += '<p>' + title + '</p>';
-				        html += '<img src="' + thumbnail + '">';
+				        html += '<div class="video-item">';
+				        html +=		'<img src="' + thumbnail + '" />';
+				        html += 	'<div>' + title + '</div>';
+				        html += '</div>';
 				    }); 
 				    
-				    $('#search-results').html(html);
+				    $('#results').html(html);
 				}
 			</script>
 		</main><!-- #main -->
