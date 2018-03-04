@@ -1,9 +1,10 @@
 <?php
 	get_header();
-	$url_css = str_replace('/includes/templates', '', plugins_url( 'public/css/style.css', __FILE__));
-	$url_video = str_replace('/includes/templates', '', plugins_url( 'public/download.php?id=', __FILE__));
+	$url_css = WP_PLUGIN_URL .'/wp-youtube-dl/public/css/style.css';
+	$url_video = WP_PLUGIN_URL .'/wp-youtube-dl/public/download.php?id=';
 ?>
 <link rel="stylesheet" href="<?php echo $url_css; ?>">
+
 <div class="wrap">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">	
@@ -12,67 +13,33 @@
 				<button id="search-button" style="width: 20%;">Buscar</button>
 			</div>
 			<div id="results">
-			</div>
-			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-			<script>
-			  	$(document).ready(function () {
-				    $('#search-button').click(function (event) {
-				        event.preventDefault();
-				        var searchTerm = $('#query').val();			        
-				        getRequest(searchTerm);
-				    });
-
-				    $('#query').change(function(){
-				    	var searchTerm = $('#query').val();
-				        if(searchTerm.length < 3){
-				        	return;
-				        }
-				        getRequest(searchTerm);
-				    });
-				});
-
-				function getRequest(searchTerm) {
-					$('.content-area').append(	'<div id="loader" class="container">' + 
-													'<div class="item item-1"></div>' + 
-													'<div class="item item-2"></div>' +
-													'<div class="item item-3"></div>' +
-													'<div class="item item-4"></div>' +
-												'</div>'); 
-
-				    url = 'https://www.googleapis.com/youtube/v3/search';
-				    var params = {
-				        part: 'snippet',
-				        q: searchTerm,
-				        //key: 'AIzaSyCGcN6lg12TmCeAm1SdQCz3jCCTqYuzNlA',
-				        key: '<?php echo get_option('wp_youtube_dl-api_key'); ?>',
-				        maxResults: <?php echo get_option('wp_youtube_dl-nro_max'); ?>
-				    };
-				  
-				    $.getJSON(url, params, function (searchTerm) {
-				        showResults(searchTerm);
-				    });
-				}
-
-				function showResults(results) {
-				    var html = "";
-				    var entries = results.items;
-				    
-				    $.each(entries, function (index, value) {
-				        var title = value.snippet.title;
-				        var thumbnail = value.snippet.thumbnails.default.url;
-				        var videoId = value.id.videoId;
-				        html += '<div class="video-item">';
-				        html +=		'<img src="' + thumbnail + '" />';
-				        html += 	'<div><p>' + title + '</p><a href="<?php echo $url_video;?>'+videoId+'"></a></div>';
-				        html += '</div>';
-				    }); 
-
-				    $('#results').html(html);
-				    $('#loader').remove();				    
-				}
-			</script>
+			</div>			
 		</main><!-- #main -->
 	</div><!-- #primary -->
 </div><!-- .wrap -->
 
-<?php get_footer();
+<?php 
+	wp_register_script(
+		'wp-youtube-dl-jqscript', 
+		WP_PLUGIN_URL. '/wp-youtube-dl/public/js/jquery.min.js', 
+		array('jquery'), 
+		'1', 
+		true 
+	);
+	wp_enqueue_script('wp-youtube-dl-jqscript'); 
+	wp_register_script(
+		'wp-youtube-dl-script', 
+		WP_PLUGIN_URL. '/wp-youtube-dl/public/js/script.js', 
+		array('jquery'), 
+		'1', 
+		true 
+	);
+	wp_enqueue_script('wp-youtube-dl-script'); 
+	wp_localize_script(
+		'wp-youtube-dl-script', 
+		'my_ajax_object',  
+		array( 
+			'ajax_url' => admin_url( 'admin-ajax.php' ) 
+		) 
+	);
+	get_footer();

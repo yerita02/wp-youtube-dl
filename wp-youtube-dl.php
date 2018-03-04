@@ -33,7 +33,11 @@ if ( is_admin() ) {
 
 add_filter('template_include', 'include_template_wp_youtube_dl_function', 1 );
 
+add_action('wp_ajax_nopriv_wp_youtube_dl_load_data_ajustes', 'wp_youtube_dl_load_data_ajustes');
+add_action('wp_ajax_wp_youtube_dl_load_data_ajustes', 'wp_youtube_dl_load_data_ajustes');
 
+add_action('wp_ajax_nopriv_wp_youtube_dl_load_data_video', 'wp_youtube_dl_load_data_video');
+add_action('wp_ajax_wp_youtube_dl_load_data_video', 'wp_youtube_dl_load_data_video');
 
 register_activation_hook( __FILE__, 'wp_youtube_dl_init');
 function wp_youtube_dl_init(){	
