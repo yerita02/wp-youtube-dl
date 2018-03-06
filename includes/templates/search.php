@@ -8,9 +8,9 @@
 <div class="wrap">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">	
-			<div id="buttons" style="width: 100%;display: inline-flex;"> 
-				<input id="query" type="text" style="width: 80%;" />
-				<button id="search-button" style="width: 20%;">Buscar</button>
+			<div id="buttons" class="content-search"> 
+				<input id="query" type="text" />
+				<button id="search-button">Buscar</button>
 			</div>
 			<div id="results">
 			</div>			

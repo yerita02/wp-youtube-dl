@@ -84,7 +84,8 @@ function showResults(results) {
 	        if(results.length > 0){
 	        	html += '<div class="video-item">';
 				    html +=		'<img src="' + thumbnail + '" />';
-				    html += 	'<div><p>' + title + '</p>';
+				    html += 	'<div class="content-video"><p>' + title + '</p></div>';
+				    html +=		'<div class="content-link">';
 
 				    $.each(results, function (ind, videoData) {
 				    	console.log(videoData);

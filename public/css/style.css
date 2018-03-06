@@ -1,12 +1,45 @@
+.content-search {
+  width: 100%;
+  display: inline-block;
+}
+
+.content-search #query{
+  width: 75%;
+  float: left;
+  height: 35px;
+}
+
+.content-search #search-button{
+  width: 25%;
+  padding: 0;
+  height: 35px;
+}
+
 .video-item{
-	display: inline-flex;
-    width: 100%;
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
+	display: inline-block;
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .video-item img{
-	margin-right: 2%;
+  margin-right: 2%;
+  float: left;
+  max-width: 20%;
+}
+
+.video-item .content-video{
+  float: left;
+  width: 80%;
+}
+
+.video-item .content-video p{
+  margin: 0 0 .5em;
+}
+
+.video-item .content-link{
+	float: left;
+  width: 80%;
 }
 
 .video-item-link{
