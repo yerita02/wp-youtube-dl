@@ -104,7 +104,7 @@ function showResults(results) {
 				    		type = 'MP4';
 				    		clase = 'label label-success';
 				    	}else if(type == 'video/3gpp'){
-				    		type = '3GPP';
+				    		type = '3GP';
 				    		clase = 'label label-warning';
 				    	}else if(type == 'video/webm'){
 				    		type = 'WEBM';
